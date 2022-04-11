@@ -2,12 +2,12 @@ import React,{useState,useEffect} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 
+import Button from 'react-bootstrap/Button';
+
 const Pataint=()=>{
     
 
-//`/DeletePataint/${post.name}/${post.username}/${post.phone}/${post.email}/${post.address}`
-   const[serial,setserial]=useState();
-    setserial(1);
+
     const[pataint,setPataint]=useState([]);
 
     useEffect(()=>{
@@ -31,11 +31,11 @@ const Pataint=()=>{
 
     return(
         <div>
-            <h1>Pataint List </h1>
+            <br/><br/><br/>
+            <h3>Pataient List </h3><br/>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>Serial</td>
                       <td>Name</td>
                       <td>Username</td>
                       <td>Phone</td>
@@ -50,14 +50,13 @@ const Pataint=()=>{
               {
                 pataint.map(post => (
                     <tr key={post.id}>
-                        <td>{serial}</td>
                         <td>{post.name}</td>
                         <td>{post.username}</td>
                         <td>{post.phone}</td>
                         <td>{post.email}</td>
                         <td>{post.group}</td>
                         <td>{post.address}</td>
-                        <td><Link to={"/DeletePataint"}>Delete</Link></td>
+                        <td><Link to={`/DeletePataint/${post.name}/${post.username}/${post.phone}/${post.email}/${post.address}`}><Button variant="danger">Delete</Button></Link></td>
                         
                     </tr>
                     

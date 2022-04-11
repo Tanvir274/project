@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\doctor;
+use App\Models\review_doctor;
+use App\Models\Appointment;
 
 class DoctorController extends Controller
 {
@@ -30,5 +32,25 @@ class DoctorController extends Controller
 
         return $profile;
 
+    }
+    public function SetCheckupTime(Request $request)
+    {
+        $profile= doctor :: where('username',$request->username)->first();
+        $profile->available=$request->time;
+        $profile->save();
+
+    }
+    public function DoctorReview(Request $request)
+    {
+        $pataint= review_doctor :: where('doc_username',$request->username)->get();
+
+        return $pataint;
+
+    }
+
+    public function PataintSetAppointment(Request $request)
+    {
+        $appointment = appointment::where('doctor_username',$request->username)->get();
+        return $appointment;
     }
 }

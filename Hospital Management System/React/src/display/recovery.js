@@ -1,54 +1,65 @@
-import React,{useState} from "react";
+import React from 'react';
 import axios from "axios";
 import { useHistory } from "react-router";
+import { useForm } from 'react-hook-form';
 
 
-const Recovery=()=>{
-    const history = useHistory();
-    let [username,setUser]=useState();
-    let [email,setEmail]=useState();
-    let [password,setPass]=useState();
+export default function App() {
+  const history = useHistory();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const submit=()=>{
-        //alert(username+" "+password);
-        //var obj ={username:"Tanvir01",password:"1234"};
+  var onSubmit = data=> {
+    var obj ={username:data.username,password:data.password,email:data.email,type:data.type};
 
-        var obj ={username:username,email:email,password:password};
             axios.post("/recovery/submit",obj)
             .then(resp=>{
+                alert("Password Recover Succesfully");
+                axios.post("/",obj)
+                history.push("/");
 
-                console.log(resp.data);
-                alert("Passwod Change Successfully");
+                //console.log(resp.data);
+
                 
-                
-    
             })
             .catch(err=>{
+                console.log(err.data);
+            })
+        
 
-                console.log(err);
-                alert("Enter Right Username & Email Id");
-            })     
-    }
-    const back = e => {
-        history.push("/");
-    }
+  } 
 
-    return(
-        <div>
-            
-            <br/><br/><br/><h1>Id Recover Page </h1>
-            <form>
-                <span>Username</span><br/>
-                <input type= "text" value={username} onChange={(e)=>setUser(e.target.value)} /><br/>
-                <span>Emai</span><br/>
-                <input type= "text" value={email} onChange={(e)=>setEmail(e.target.value)} /><br/>
-                <span>Enter New Password</span><br/>
-                <input type= "text" value={password} onChange={(e)=>setPass(e.target.value)} />
-            </form>
-            <button onClick={submit}>Submit</button><br/><br/><br/>
-
-            <button onClick={back}>Back</button>
-        </div>
-    )
+  const back = e => {
+    history.push("/");
 }
-export default Recovery;
+  
+  return (
+      
+    <form onSubmit={handleSubmit(onSubmit)}>
+      
+       <br/><br/><br/> <h3>Recovery Account</h3><br/><br/>
+      
+      <span>User Name</span><br/>
+      <input type="text" placeholder="username" {...register("username", {required: true,minLength: 3, maxLength: 10})} /><br/>
+      <span>Email</span><br/>
+      <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} /><br/>
+      <span></span>
+      <span>Password</span><br/>
+      <input type="text" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 10})} /><br/>
+      
+      
+      <span>Select User Type</span><br/>
+      <select {...register("type", { required: true })}>
+        <option value="pataint">Pataint</option>
+        <option value="doctor">Doctor</option>
+        <option value="pharmacy">Pharmacian</option>
+        <option value="nurse">Nurse</option>
+        <option value="admin">Admin</option>
+        
+      </select><br/><br/>
+      
+
+      <input type="submit" /><br/><br/><br/>
+      <button onClick={back}>Back</button>
+    </form>
+  );
+}

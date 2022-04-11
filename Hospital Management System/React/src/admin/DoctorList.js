@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from "react";
 import {Link} from "react-router-dom";
-import { useHistory } from "react-router";
 import axios from 'axios';
 
+import Button from 'react-bootstrap/Button';
+
 const Doctor=()=>{
-    const history = useHistory();
+    
 
     const[doctors,setDoctor]=useState([]);
 
@@ -29,7 +30,8 @@ const Doctor=()=>{
 
     return(
         <div>
-            <h1>Available Doctor And Checkup Time </h1>
+            <br/><br/><br/>
+            <h3>Available Doctor And Checkup Time </h3><br/>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -39,7 +41,8 @@ const Doctor=()=>{
                       <td>Email</td>
                       <td>Address</td>
                       <td>Checkup Time</td>
-                      <td>Remove</td>
+                      <td>Action(Appointment Request)</td>
+                      <td>Action(Delete)</td>
                   </tr>
 
               </thead>
@@ -53,13 +56,15 @@ const Doctor=()=>{
                         <td>{post.email}</td>
                         <td>{post.address}</td>
                         <td>{post.available}</td>
-                        <td><Link to={`/DeleteDoctor/${post.doc_name}/${post.username}/${post.phone}/${post.email}/${post.address}`}>Delete</Link></td>
+                        <td><Link to={`/AppointmentRequestList/${post.doc_name}/${post.username}`}><Button variant="success">List</Button></Link></td>
+
+                        <td><Link to={`/DeleteDoctor/${post.doc_name}/${post.username}/${post.phone}/${post.email}/${post.address}`}><Button variant="danger">Delete</Button></Link></td>
                     </tr>
                 ))
               }           
               </tbody>
-            </table><br/><br/><br/>
-            <Link to={"/AddDoctor"}>Add Doctor</Link>
+            </table><br/>
+            <Link to={"/AddDoctor"}><Button variant="primary">Add Doctor</Button></Link>
         </div>
 
     )

@@ -36,7 +36,7 @@ export default function App() {
       
     <form onSubmit={handleSubmit(onSubmit)}>
       
-       <br/><br/><br/> <h1>Registration Doctor</h1><br/><br/>
+       <br/><br/><br/> <h3>Registration Doctor</h3><br/><br/>
       <span>Name</span><br/>
       <input type="text" placeholder="Name" {...register("name", {required: true,minLength: 3, maxLength: 20})} /><br/>
       <span></span>
@@ -48,8 +48,8 @@ export default function App() {
       <span>Email</span><br/>
       <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} /><br/>
       <span>Mobile Number</span><br/>
-      <input type="tel" placeholder="Mobile number" {...register("digit", {required: true, minLength: 6, maxLength: 12})} /><br/>
-      <span>Blood Group</span>
+      <input type="number" placeholder="Mobile number" {...register("digit", {required: true, minLength: 6, maxLength: 12})} /><br/>
+      <span>Blood Group</span><br/>
       <select {...register("blood", { required: true })}>
         <option value="A+">A+</option>
         <option value="O+">O+</option>
@@ -60,7 +60,7 @@ export default function App() {
         <option value="B-">B-</option>
         <option value="AB-">AB-</option>
       </select><br/><br/>
-      <span>Date Of Birth,, </span><br/>
+      <span>Date Of Birth </span><br/>
       <input type="DATE" placeholder="Date of birth" {...register("dob", {required: true})} /><br/>
       <span>Address</span><br/>
       <input type="text" placeholder="Address" {...register("address", {required: true,minLength: 4, maxLength: 30})} /><br/>

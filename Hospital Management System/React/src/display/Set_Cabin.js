@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 import { useForm } from 'react-hook-form';
 import {useParams}  from 'react-router-dom';
 import Header from "./header";
 
 const Labtest=()=>{
+    const history = useHistory();
     const {id} = useParams();
     const {name} = useParams();
     let object= JSON.parse( localStorage.getItem('user'));
@@ -16,7 +18,7 @@ const Labtest=()=>{
                 axios.post("/cabin/submit",obj)
                 .then(resp=>{
                     alert("Cabin Booking Succesfully");
-    
+                    history.push("/home");
                     console.log(resp.data);
     
                     
@@ -31,7 +33,7 @@ const Labtest=()=>{
         
         <form onSubmit={handleSubmit(onSubmit)}>
             <Header/>
-        <br/><br/><br/> <h1>Confirm Cabin Appointment:{name}</h1><br/><br/>
+        <br/><br/><br/> <h3>Confirm Cabin Appointment: <h2>{name}</h2></h3><br/><br/>
         <span>Select Date</span><br/>
         <input type="date"  {...register("date", {required: true})} /><br/>
         <span></span>

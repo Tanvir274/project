@@ -1,14 +1,39 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Navbar, Nav} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+
 function header()
 {
     return(
-    <div>
-        <Link to="/DoctorDashboard"><b>DashBoard</b></Link> &nbsp;&nbsp;&nbsp;
-        <Link to="/DoctorProfile"><b>Profile</b></Link>&nbsp;&nbsp;&nbsp;
-        <Link to="/logout"><b>Log Out</b></Link>
+    
+        <Navbar bg="btn btn-danger" variant="dark">
+        
+            <Container>
+        
+            <Navbar.Brand href="/DoctorDashboard">DashBoard</Navbar.Brand>
+        
+            <Nav className="me-auto">
+        
+            <Nav.Link href="/CheckupTime">Set Appointment</Nav.Link>
+        
+            <Nav.Link href="/PataintAppointmentList">Pataint Appointment List</Nav.Link>
+        
+            <Nav.Link href="/PataintReview">Pataint Review</Nav.Link>
+        
+            <Nav.Link href="/DoctorProfile">Profile</Nav.Link>
+        
+        
+            <Nav.Link href="/logout">Logout</Nav.Link>
+        
+            </Nav>
+        
+            </Container>
+        
+            
+        
+        </Navbar>
 
-    </div>
+        
     )
 }
 export default header;

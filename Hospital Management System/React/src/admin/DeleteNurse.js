@@ -29,7 +29,7 @@ const DeleteNurse=()=>{
 
     return (
         <div>
-            <br/><br/><br/><h1>You want to Delete : {name}</h1><br/><br/>      
+            <br/><br/><br/><h3>You want to Delete : <h2>{name}</h2></h3><br/><br/>      
     <table align='center' border= '1px solid black' border-radius= '10px'>
     <thead>    
       <tr>

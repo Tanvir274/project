@@ -7,8 +7,7 @@ const Home=()=>{
     const[cabin,setCabin]=useState([]);
     const[lab,setLab]=useState([]);
     const[hospital,setHospital]=useState([]);
-    let object= JSON.parse( localStorage.getItem('user'));
-    let username = object.username;
+    
     useEffect(()=>{
         
         axios.get("/review")
@@ -32,8 +31,8 @@ const Home=()=>{
     return(
         <div>
             <Header/>
-            <br/><br/><h1>Doctor ,Labtest ,Cabin ,Hospital Management System Review </h1><br/><br/><br/><br/>
-            <h1>Doctor Review</h1>
+            <br/><br/><h3>Doctor ,Labtest ,Cabin ,Hospital Management System Review </h3><br/><br/><br/><br/>
+            <h3>Doctor Review</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -59,7 +58,7 @@ const Home=()=>{
               }           
               </tbody>
             </table><br/><br/><br/>
-            <h1>Labtest Review </h1>
+            <h3>Labtest Review </h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -85,7 +84,7 @@ const Home=()=>{
               }           
               </tbody>
             </table><br/><br/><br/>
-            <h1>Cabin Review</h1>
+            <h3>Cabin Review</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -112,7 +111,7 @@ const Home=()=>{
               }           
               </tbody>
             </table><br/><br/><br/>
-            <h1>Hospital System Review</h1>
+            <h3>Hospital System Review</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>

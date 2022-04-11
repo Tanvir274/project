@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { useHistory } from "react-router";
 import {useParams}  from 'react-router-dom';
 
 
 
 const  EditProfile= ()=> {
+  const history = useHistory();
+
   const {username} = useParams();
   const {name} = useParams();
   const {password} = useParams();
@@ -36,7 +39,8 @@ const  EditProfile= ()=> {
             .then(resp=>{
                 alert("Update Succesfull");
 
-                console.log(resp.data);
+                //console.log(resp.data);
+                history.push("/DoctorProfile");
 
                 
             })
@@ -50,7 +54,7 @@ const  EditProfile= ()=> {
   return (
    <div>   
     <form >
-       <br/><br/><br/> <h1>Edit Profile</h1><br/><br/>
+       <br/><br/><br/> <h3>Edit Profile</h3><br/><br/>
        <h3> </h3>
       <span>Name</span><br/>
       <input type="text"placeholder={name}  onChange={(e)=>setname(e.target.value)}  /><br/>
@@ -58,8 +62,8 @@ const  EditProfile= ()=> {
       
       <span>Password</span><br/>
       <input type="text" placeholder={password} onChange={(e)=>setpassword(e.target.value)}   /><br/>
-      <span>Mobile Number</span><br/>
-      <input type="tel" placeholder={phone} onChange={(e)=>setphone(e.target.value)}   /><br/>
+      <span>Phone Number</span><br/>
+      <input type="number" placeholder={phone} onChange={(e)=>setphone(e.target.value)}   /><br/>
       
       <span>Address</span><br/>
       <input type="text" placeholder={address}  onChange={(e)=>setaddress(e.target.value)}  /><br/>

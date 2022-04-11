@@ -3,6 +3,8 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import {useParams}  from 'react-router-dom';
 
+import Button from 'react-bootstrap/Button';
+
 
 const DeletePharmacyEmployee=()=>{
     const history = useHistory();
@@ -29,7 +31,7 @@ const DeletePharmacyEmployee=()=>{
 
     return (
         <div>
-            <br/><br/><br/><h1>You want to Delete : {name}</h1><br/><br/>      
+            <br/><br/><br/><h3>You want to Delete : <h2>{name}</h2></h3><br/><br/>      
     <table align='center' border= '1px solid black' border-radius= '10px'>
     <thead>    
       <tr>
@@ -56,7 +58,7 @@ const DeletePharmacyEmployee=()=>{
     </tbody>     
     </table>
     <br/><br/>
-    <button onClick={Submit}> Confirm Delete</button>
+    <Button variant="danger" onClick={Submit}> Confirm Delete</Button>
     </div>
 
     )

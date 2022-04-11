@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './display/App.css';
+//import './index.css';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import axios from 'axios';
@@ -9,7 +11,6 @@ import PataintHeader from './display/header';
 import Login from './display/login';
 import Home from './display/home';
 import Registration from './display/registration';
-import Style from './display/style';
 import Doctor from './display/Set_Appointment';
 import Cabin from './display/Set_Cabin';
 import Labtest from './display/Set_labtest';
@@ -38,11 +39,17 @@ import DeleteDoctor from './admin/DeleteDoctor';
 import Nurse from './admin/NurseList';
 import AddNurse from './admin/AddNurse';
 import DeleteNurse from './admin/DeleteNurse';
+import NurseDutySet from './admin/NurseDuty';
 import Pataint from './admin/PataintList';
 import DeletePataint from './admin/DeletePataint';
 import Pharmacy from './admin/PharmacyList';
 import AddEmployee from './admin/AddPharmacyEmployee';
 import DeleteEmployee from './admin/DeletePharEmpl';
+import PharmacyDutySet from './admin/PharmacyDuty';
+import A_MedicinList from './admin/Admin_MedicinList';
+import A_SellerList from './admin/Admin_SellerList';
+import AppointmentRequestListAdmin from './admin/SelectAppointmentDate';
+import AdminSetAppointmentTime from './admin/PataintAppointmentTimeSet';
 
 
 
@@ -52,6 +59,33 @@ import DoctorHeader from './doctor/DoctorHeader';
 import DoctorDashboard from './doctor/DoctorDashboard';
 import DoctorProfile from './doctor/DoctorProfile';
 import EditDoctorProfile from './doctor/DoctorProfileEdit';
+import SetTime from './doctor/SetCheckupSchedule';
+import Reviewer from './doctor/PataintReview';
+import DoctorToPataintAppointment  from './doctor/PataintAppointment';
+
+
+
+
+import PharmacyHeader from './pharmacy/PharmacyHeader';
+import P_MedicinList from './pharmacy/MedicinList';
+import P_MedicinStatus from './pharmacy/SetStatus';
+import P_DeleteMedicin from './pharmacy/DeleteMedicin';
+import P_AddMedicin from './pharmacy/Add_Medicine';
+import P_EmployeeProfile from './pharmacy/EmployeeProfile';
+import P_EditProfile from './pharmacy/EmplyeeProfileEdit';
+import P_MedicinSell from './pharmacy/MedicineSell';
+import P_SellHistory from './pharmacy/SellerList';
+
+
+
+
+import NurseHeader from './nurse/NurseHeader';
+import NurseHome from './nurse/NurseDashboard';
+import NurseProfile from './nurse/NursePrifile';
+import Nurse_EditProfile from './nurse/NurseEditProfile';
+
+
+
 
 
 var token=null;
@@ -135,6 +169,7 @@ ReactDOM.render(
 
         </Route>
         <Route exact path='/admin'>
+          <PataintHeader/>
 
           <Admin/>
 
@@ -194,6 +229,18 @@ ReactDOM.render(
           <AddDoctor/>
 
         </Route>
+        <Route exact path='/AppointmentRequestList/:name/:username'>
+          <AdminHeader/>
+
+          <AppointmentRequestListAdmin/>
+
+        </Route>
+        <Route exact path='/AdminSetAppointmentTime/:doctor_username/:pataint_username/:appointment_date'>
+          <AdminHeader/>
+
+          <AdminSetAppointmentTime/>
+
+        </Route>
         <Route exact path='/DeleteDoctor/:name/:username/:phone/:email/:address'>
           <AdminHeader/>
 
@@ -227,6 +274,12 @@ ReactDOM.render(
           <DeleteNurse/>
 
         </Route>
+        <Route exact path='/NurseDutySet/:name/:username/:duty'>
+          <AdminHeader/>
+
+          <NurseDutySet/>
+
+        </Route>
 
         <Route exact path='/PharmacyEmployee'>
           <AdminHeader/>
@@ -243,6 +296,24 @@ ReactDOM.render(
           <AdminHeader/>
 
           <DeleteEmployee/>
+
+        </Route>
+        <Route exact path='/PharmacyDutySet/:name/:username/:duty'>
+          <AdminHeader/>
+
+          <PharmacyDutySet/>
+
+        </Route>
+        <Route exact path='/A_MedicinList'>
+          <AdminHeader/>
+
+          <A_MedicinList/>
+
+        </Route>
+        <Route exact path='/A_SellerList'>
+          <AdminHeader/>
+
+          <A_SellerList/>
 
         </Route>
 
@@ -265,11 +336,106 @@ ReactDOM.render(
 
         </Route>
         <Route exact path='/EditDoctorProfile/:username/:name/:password/:phone/:address'>
-          <AdminHeader/>
+          <DoctorHeader/>
 
           <EditDoctorProfile/>
 
         </Route>
+        <Route exact path='/CheckupTime'>
+          <DoctorHeader/>
+          <SetTime/>
+
+        </Route>
+        <Route exact path='/PataintReview'>
+          <DoctorHeader/>
+          <Reviewer/>
+
+        </Route>
+        <Route exact path='/PataintAppointmentList'>
+          <DoctorHeader/>
+          <DoctorToPataintAppointment/>
+
+        </Route>
+
+
+
+
+
+
+
+
+
+
+        <Route exact path='/P_MedicinList'>
+          <PharmacyHeader/>
+          <P_MedicinList/>
+
+        </Route>
+
+        <Route exact path='/P_ChangeStatus/:group_name/:status'>
+          <PharmacyHeader/>
+
+          <P_MedicinStatus/>
+
+        </Route>
+        <Route exact path='/P_DeleteMedicin/:group_name'>
+          <PharmacyHeader/>
+
+          <P_DeleteMedicin/>
+
+        </Route>
+        <Route exact path='/P_AddMedicin'>
+          <PharmacyHeader/>
+          <P_AddMedicin/>
+
+        </Route>
+        
+        <Route exact path='/P_Profile'>
+          <PharmacyHeader/>
+          <P_EmployeeProfile/>
+
+        </Route>
+        <Route exact path='/P_EditProfile/:username/:name/:password/:phone/:address'>
+          <PharmacyHeader/>
+
+          <P_EditProfile/>
+
+        </Route>
+        <Route exact path='/P_MedicinSell'>
+          <PharmacyHeader/>
+          <P_MedicinSell/>
+
+        </Route>
+        <Route exact path='/P_SellHistory'>
+          <PharmacyHeader/>
+          <P_SellHistory/>
+
+        </Route>
+
+
+
+
+
+
+        <Route exact path='/NurseHome'>
+          <NurseHeader/>
+          <NurseHome/>
+
+        </Route>
+        <Route exact path='/Nurse_Profile'>
+          <NurseHeader/>
+          <NurseProfile/>
+
+        </Route>
+        <Route exact path='/Nurse_EditProfile/:username/:name/:password/:phone/:address'>
+          <NurseHeader/>
+
+          <Nurse_EditProfile/>
+
+        </Route>
+
+        
+
         
 
 

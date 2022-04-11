@@ -16,7 +16,7 @@ const Home=()=>{
         var obj={username:{username}}
         axios.post("/details",obj)
         .then(resp=>{
-            console.log(resp.data[0]);
+            //console.log(resp.data[0]);
             //console.log(resp.data[0]);
             setDoctor(resp.data[0]);
             setCabin(resp.data[1]);
@@ -34,12 +34,13 @@ const Home=()=>{
     return(
         <div>
             <Header/>
-            <h1>Taken Service Histroy</h1><br/><br/><br/><br/>
-            <h1>Doctor Appointment Histroy</h1>
+            <br/><br/><br/>
+            <h3>Taken Service Histroy</h3><br/><br/><br/><br/>
+            <h3>Doctor Appointment Histroy</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>Name</td>
+                      <td>Doctor Name</td>
                       <td>Checkup Time</td>
                       <td>Checkup Date</td>
                   </tr>
@@ -59,7 +60,7 @@ const Home=()=>{
               }           
               </tbody>
             </table><br/><br/><br/>
-            <h1>Labtest List histroy </h1>
+            <h3>Lab Test List histroy </h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -83,7 +84,7 @@ const Home=()=>{
               }           
               </tbody>
             </table><br/><br/><br/>
-            <h1>Bookin Cabin Histray</h1>
+            <h3>Bookin Cabin Histray</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>

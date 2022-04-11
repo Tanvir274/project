@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from 'axios';
 
+import Button from 'react-bootstrap/Button';
+
 const Nurse=()=>{
     const history = useHistory();
 
@@ -29,7 +31,8 @@ const Nurse=()=>{
 
     return(
         <div>
-            <h1>Available Nurse  </h1>
+            <br/><br/><br/>
+            <h3>Available Nurse  </h3><br/>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
@@ -39,7 +42,8 @@ const Nurse=()=>{
                       <td>Email</td>
                       <td>Address</td>
                       <td>Duty Area</td>
-                      <td>Remove</td>
+                      <td>Action(Set Duty)</td>
+                      <td>Action(Delete)</td>
                   </tr>
 
               </thead>
@@ -53,13 +57,14 @@ const Nurse=()=>{
                         <td>{post.email}</td>
                         <td>{post.address}</td>
                         <td>{post.duty}</td>
-                        <td><Link to={`/DeleteNurse/${post.name}/${post.username}/${post.phone}/${post.email}/${post.address}`}>Delete</Link></td>
+                        <td><Link to={`/NurseDutySet/${post.name}/${post.username}/${post.duty}`}><Button variant="success">Change Duty</Button></Link></td>
+                        <td><Link to={`/DeleteNurse/${post.name}/${post.username}/${post.phone}/${post.email}/${post.address}`}><Button variant="danger">Delete</Button></Link></td>
                     </tr>
                 ))
               }           
               </tbody>
             </table><br/><br/><br/>
-            <Link to={"/AddNurse"}>Add Nurse</Link>
+            <Link to={"/AddNurse"}><Button variant="primary">Add Nurse</Button></Link>
         </div>
 
     )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import {useParams}  from 'react-router-dom';
 
@@ -82,7 +82,7 @@ const  EditProfile= ()=> {
   return (
    <div>   
     <form >
-       <br/><br/><br/> <h1>Edit Profile</h1><br/><br/>
+       <br/><br/><br/> <h3>Edit Profile</h3><br/><br/>
        <h3> </h3>
       <span>Name</span><br/>
       <input type="text"placeholder={name}  onChange={(e)=>setname(e.target.value)}  /><br/>
@@ -91,7 +91,7 @@ const  EditProfile= ()=> {
       <span>Password</span><br/>
       <input type="text" placeholder={password} onChange={(e)=>setpassword(e.target.value)}   /><br/>
       <span>Mobile Number</span><br/>
-      <input type="tel" placeholder={phone} onChange={(e)=>setphone(e.target.value)}   /><br/>
+      <input type="number" placeholder={phone} onChange={(e)=>setphone(e.target.value)}   /><br/>
       <span>Statement</span><br/>
       <input type="text" placeholder={statement} onChange={(e)=>setstatement(e.target.value)}  /><br/>
       <span>Address</span><br/>

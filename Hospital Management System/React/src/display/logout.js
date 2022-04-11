@@ -20,7 +20,8 @@ const Logout=()=>{
     }
     return(
         <>
-        <button onClick={logout}>Log Out</button>
+        <br/><br/><br/><br/><br/><br/>
+        <button onClick={logout}>Confirm Logout</button>
         </>
     )
 }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatienController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\MedicinController;
+use App\Http\Controllers\NurseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,39 +77,67 @@ Route::get('/review',[PatienController::class,'allReview'])->middleware('control
 
 // @@@@@@@@@  Admin Api:  @@@@@@@@@
 
-Route::post('/AdminRecovery',[AdminController::class,'AdminRecovery']);
+Route::post('/AdminRecovery',[AdminController::class,'AdminRecovery'])->middleware('control');
 
-Route::post('/AdminProfile',[AdminController::class,'AdminProfile']);
+Route::post('/AdminProfile',[AdminController::class,'AdminProfile'])->middleware('control');
 
-Route::post('/AdminEditProfile',[AdminController::class,'AdminEditProfile']);
+Route::post('/AdminEditProfile',[AdminController::class,'AdminEditProfile'])->middleware('control');
 //Doctor 
-Route::get('/Doctorlist',[AdminController::class,'DoctorList']);
-Route::post('/DeleteDoctor',[AdminController::class,'DeleteDoctor']);
-Route::post('/AddDoctor',[AdminController::class,'AddDoctor']);
+Route::get('/Doctorlist',[AdminController::class,'DoctorList'])->middleware('control');
+Route::post('/DeleteDoctor',[AdminController::class,'DeleteDoctor'])->middleware('control');
+Route::post('/AddDoctor',[AdminController::class,'AddDoctor'])->middleware('control');
+Route::post('/AppointmentRequestList',[AdminController::class,'DoctorAppointmentRequester'])->middleware('control');
 
 //Pataint
-Route::get('/Pataintlist',[AdminController::class,'Pataintlist']);
-Route::post('/DeletePataint',[AdminController::class,'DeletePataint']);
+Route::get('/Pataintlist',[AdminController::class,'Pataintlist'])->middleware('control');
+Route::post('/DeletePataint',[AdminController::class,'DeletePataint'])->middleware('control');
+Route::post('/AdminSetAppointmentTime',[AdminController::class,'SetAppointmentTime'])->middleware('control');
 
 //Nurse
-Route::get('/Nurselist',[AdminController::class,'NurseList']);
-Route::post('/DeleteNurse',[AdminController::class,'DeleteNurse']);
-Route::post('/AddNurse',[AdminController::class,'AddNurse']);
+Route::get('/Nurselist',[AdminController::class,'NurseList'])->middleware('control');
+Route::post('/DeleteNurse',[AdminController::class,'DeleteNurse'])->middleware('control');
+Route::post('/AddNurse',[AdminController::class,'AddNurse'])->middleware('control');
+Route::post('/NurseDutySet',[AdminController::class,'SetDutyNurse'])->middleware('control');
 
 //PharmacyEmployee
 
-Route::get('/PharmacyEmployeeList',[AdminController::class,'PharmacyEmployeeList']);
-Route::post('/DeletePharmacyEmployee',[AdminController::class,'DeletePharmacyEmployee']);
-Route::post('/AddPharmacyEmployee',[AdminController::class,'AddPharmacyEmployee']);
+Route::get('/PharmacyEmployeeList',[AdminController::class,'PharmacyEmployeeList'])->middleware('control');
+Route::post('/DeletePharmacyEmployee',[AdminController::class,'DeletePharmacyEmployee'])->middleware('control');
+Route::post('/AddPharmacyEmployee',[AdminController::class,'AddPharmacyEmployee'])->middleware('control');
+Route::post('/PharmacianDutySet',[AdminController::class,'SetDutyPharmacian'])->middleware('control');
+
 
 
 
 //  @@@@@@@@@@@@@   Doctor Api:   @@@@@@@@@@
 
-Route::post('/DoctorProfile',[DoctorController::class,'DoctorProfile']);
+Route::post('/DoctorProfile',[DoctorController::class,'DoctorProfile'])->middleware('control');
 
-Route::post('/DoctorEditProfile',[DoctorController::class,'DoctorEditProfile']);
+Route::post('/DoctorEditProfile',[DoctorController::class,'DoctorEditProfile'])->middleware('control');
+Route::post('/CheckupTimeSet',[DoctorController::class,'SetCheckupTime'])->middleware('control');
+Route::post('/ReviewList',[DoctorController::class,'DoctorReview'])->middleware('control');
+Route::post('/PataintToDoctorAppointment',[DoctorController::class,'PataintSetAppointment'])->middleware('control');
 
+
+//  @@@@@@@@@@@@@   Pharmacy Api:   @@@@@@@@@@
+
+
+Route::get('/MedicinList',[MedicinController::class,'MedicinList'])->middleware('control');
+Route::post('/EmployeeProfile',[MedicinController::class,'PharmacyEmployee'])->middleware('control');
+Route::post('/EmployeeEditProfile',[MedicinController::class,'PharmacyEmployeeEditProfile'])->middleware('control');
+Route::post('/MedicinAdd',[MedicinController::class,'MedicinAdd'])->middleware('control');
+Route::post('/MedicinDelete',[MedicinController::class,'MedicinDelete'])->middleware('control');
+Route::post('/UpdateStatus',[MedicinController::class,'UpdateStatus'])->middleware('control');
+Route::post('/MedicinSell',[MedicinController::class,'MedicinSell'])->middleware('control');
+Route::get('/EmployeeSellList',[MedicinController::class,'SellList'])->middleware('control');
+
+
+
+//  @@@@@@@@@@@@@   Nurse Api:   @@@@@@@@@@
+
+Route::post('/NurseProfile',[NurseController::class,'NurseProfile'])->middleware('control');
+Route::post('/NurseProfileEdit',[NurseController::class,'NurseProfileEdit'])->middleware('control');
+Route::post('/NurseDutyArea',[NurseController::class,'NurseDutyArea'])->middleware('control');
 
 
 

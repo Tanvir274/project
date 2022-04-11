@@ -4,6 +4,9 @@ import { useHistory } from "react-router";
 import axios from "axios";
 
 
+import Button from 'react-bootstrap/Button';
+
+
 const Login=()=>{
     const history = useHistory();
     let [token,setToken]=useState();
@@ -42,6 +45,16 @@ const Login=()=>{
                     alert("login Sucessfull");
                     history.push("/DoctorDashboard");
                 }
+                else if(token.token != null && token.type =="pharmacy")
+                {
+                    alert("login Sucessfull");
+                    history.push("/P_MedicinList");
+                }
+                else if(token.token != null && token.type =="nurse")
+                {
+                    alert("login Sucessfull");
+                    history.push("/NurseHome");
+                }
                 else{
                     alert("Don't found Account");
                 } 
@@ -53,31 +66,33 @@ const Login=()=>{
                 console.log(err);
                 alert("Username or Password Invalid");
             })
+
+
+            
     
         
     }
+    var req = true;
 
     return(
         <div>
             
-            <br/><br/><br/><br/><br/><h1><b><i>LOG IN</i></b></h1><br/>
+            <br/><br/><br/><h2>Welcome : ABC Hospital</h2><br/><br/><br/><br/><h3><b>Log In</b></h3>
             <form>
-                <span>Username</span>
-                <input type= "text" value={username} onChange={(e)=>setUser(e.target.value)} /><br/>
-                <span>Password</span>
-                <input type= "text" value={password} onChange={(e)=>setPass(e.target.value)} />
+                <span>Username </span>
+                <input type= "text"  value={username}   onChange={(e)=>setUser(e.target.value)} /><br/>
+                <span>Password </span>
+                <input type= "password" value={password}  onChange={(e)=>setPass(e.target.value)} />
             </form>
-            <button onClick={loginSubmit}>Login</button><br/><br/>
-            <table align='center' border= '2px solid black' border-radius= '10px'>
-                <tr>
-                    <td>No Account !!!</td>
-                    <td><Link to="/registration">Sign Up</Link></td>
-                </tr>
-                <tr>
-                    <td>Forget Password</td>
-                    <td><Link to="/recovery">Recover</Link></td>
-                </tr>
-            </table>
+            <button onClick={loginSubmit}>Login</button><br/><br/><br/>
+            
+            
+                     
+            <span>No Account ☞ ➤ </span><span><Link to="/registration"> <Button variant="outline-primary">Sign Up</Button></Link></span>
+                
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+            <span>Forgot Password ☞ ➤ </span><span><Link to="/recovery"><Button variant="outline-info">Recover</Button></Link></span>
+                
         </div>
     )
 }

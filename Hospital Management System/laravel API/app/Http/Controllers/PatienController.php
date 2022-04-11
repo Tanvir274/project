@@ -17,6 +17,9 @@ use App\Models\review_labtest;
 use App\Models\review_cabin;
 use App\Models\token;
 use App\Models\admin;
+use App\Models\pharmacy;
+use App\Models\nurse;
+
 use Illuminate\Support\Str; //for random value
 use DateTime;
 
@@ -30,6 +33,7 @@ class PatienController extends Controller
         $p=pataint::where('username',$request->username)
         ->where('password',$request->password)
         ->first();
+        
         $a=admin::where('username',$request->username)
         ->where('password',$request->password)
         ->first();
@@ -38,13 +42,24 @@ class PatienController extends Controller
         ->where('password',$request->password)
         ->first();
 
+        $PE=pharmacy::where('username',$request->username)
+        ->where('password',$request->password)
+        ->first();
+
+        $n=nurse::where('username',$request->username)
+        ->where('password',$request->password)
+        ->first();
+
+        
+
         if($p)
         {
-            $api_token=Str::random(64);
+            $api_token=Str::random(16);
+
             $token = new token();
             $token->username = $p->username;
-            $token->type= $p->type;
             $token->token = $api_token;
+            $token->type= $p->type;
             $token->created_at=New DateTime();
             $token->save();
             return $token;
@@ -54,7 +69,7 @@ class PatienController extends Controller
         }
         elseif($a)
         {
-            $api_token=Str::random(64);
+            $api_token=Str::random(16);
             $token = new token();
             $token->username = $a->username;
             $token->token = $api_token;
@@ -66,16 +81,41 @@ class PatienController extends Controller
         }
         elseif($d)
         {
-            $api_token=Str::random(64);
+            $api_token=Str::random(16);
             $token = new token();
-            $token->username = $a->username;
+            $token->username = $d->username;
             $token->token = $api_token;
-            $token->type= $a->type;
+            $token->type= $d->type;
             $token->created_at=New DateTime();
             $token->save();
             return $token;
 
         }
+        elseif($PE)
+        {
+            $api_token=Str::random(16);
+            $token = new token();
+            $token->username = $PE->username;
+            $token->token = $api_token;
+            $token->type= $PE->type;
+            $token->created_at=New DateTime();
+            $token->save();
+            return $token;
+
+        }
+        elseif($n)
+        {
+            $api_token=Str::random(16);
+            $token = new token();
+            $token->username = $n->username;
+            $token->token = $api_token;
+            $token->type= $n->type;
+            $token->created_at=New DateTime();
+            $token->save();
+            return $token;
+
+        }
+
         return "Not found";
         
         
@@ -152,22 +192,46 @@ class PatienController extends Controller
     
     public function RecoverySubmit(Request $request)
     {
-        
+        if($request->type=='pataint')
+        {
+            $var= pataint :: where('username',$request->username)->where('email',$request->email)->first();
+            $var->password= $request->password;
+            $var->save();
+            return  $var;
 
-        
-        $var= pataint :: where('username',$request->username)->where('email',$request->email)->first();
-        $var->name=$var->name;
-        $var->username= $var->username;
-        $var->password= $request->password;
-        $var->phone= $var->phone;
-        $var->email= $var->email;
-        $var->group= $var->group;
-        $var->dob= $var->dob;
-        $var->address= $var->address;
-        $var->save();
-        return  $var;
-       
-        
+        }
+        elseif($request->type=='doctor')
+        {
+            $var= doctor :: where('username',$request->username)->where('email',$request->email)->first();
+            $var->password= $request->password;
+            $var->save();
+            return  $var;
+        }
+        elseif($request->type=='pharmacy')
+        {
+            $var= pharmacy :: where('username',$request->username)->where('email',$request->email)->first();
+            $var->password= $request->password;
+            $var->save();
+            return  $var;
+
+        }
+        elseif($request->type=='admin')
+        {
+            $var= admin :: where('username',$request->username)->where('email',$request->email)->first();
+            $var->password= $request->password;
+            $var->save();
+            return  $var;
+
+        }
+        elseif($request->type=='nurse')
+        {
+            $var= nurse :: where('username',$request->username)->where('email',$request->email)->first();
+            $var->password= $request->password;
+            $var->save();
+            return  $var;
+
+        }
+    
     }
 
     
@@ -210,8 +274,9 @@ class PatienController extends Controller
         $var=new Appointment();
         $var->pataint_username=$u->username;
         $var->pataint_name= $u->name;
+        $var->doctor_username=$d->username;
         $var->doctor_name= $d->doc_name;
-        $var->app_time= $request->time;
+        $var->app_time= "09:00 AM";
         $var->app_date= $request->date;
         $var->save();
         return $var; 
@@ -233,7 +298,7 @@ class PatienController extends Controller
         $var->pataint_username=$u->username;
         $var->pataint_name= $u->name;
         $var->test_name= $l->type;
-        $var->time= $request->time;
+        $var->time= '09:00 AM';
         $var->date= $request->date;
         $var->save();
         return $var;  
@@ -283,7 +348,7 @@ class PatienController extends Controller
         $d= doctor :: where('id',$request->primary_id)->first();
 
         $var=new review_doctor();
-        $var->doctor_id=$d->id;
+        $var->doctor_username=$d->username;
         $var->doctor_name= $d->doc_name;
         $var->pataint_name= $u->name;
         $var->pataint_username= $u->username;

@@ -36,7 +36,7 @@ export default function App() {
       
     <form onSubmit={handleSubmit(onSubmit)}>
       
-       <br/><br/><br/> <h1>Registration Nurse</h1><br/><br/>
+       <br/><br/><br/> <h3>Registration Nurse</h3><br/><br/>
       <span>Name</span><br/>
       <input type="text" placeholder="Name" {...register("name", {required: true,minLength: 3, maxLength: 20})} /><br/>
       <span></span>
@@ -47,8 +47,8 @@ export default function App() {
       <input type="text" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 10})} /><br/>
       <span>Email</span><br/>
       <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} /><br/>
-      <span>Mobile Number</span><br/>
-      <input type="tel" placeholder="Mobile number" {...register("digit", {required: true, minLength: 6, maxLength: 12})} /><br/>
+      <span>phone Number</span><br/>
+      <input type="number" placeholder="Phone number" {...register("digit", {required: true, minLength: 6, maxLength: 12})} /><br/>
       <span>Set Duty Area</span><br/>
       <input type="text" placeholder="Duty Area" {...register("duty", {required: true,minLength: 4, maxLength: 30})} /><br/>
       

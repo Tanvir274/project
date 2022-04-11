@@ -1,8 +1,110 @@
 body {
-    background-color: #5e0f22;
+    background-color: #d64f6f;
     color: white;
-    padding: 40px;
+    padding: 30px;
     font-family: Sans-Serif;
     text-align: center;
     
   }
+  h2{
+    margin: auto;
+    width: 700px;
+    padding: 3px;
+    color:rgb(75, 0, 130);
+    border: 5px dashed rgb(255, 250, 240);
+    border-bottom-left-radius: 50px 20px; 
+    
+  }
+  h3{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+   td,  th {
+    border: 3px solid #ddd;
+    padding: 8px;
+  }
+  
+   tr:nth-child(even){background-color: #bb6262;}
+  
+   tr:hover {background-color: rgb(240, 38, 38);}
+  
+   th,thead {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #6C757D;
+    color: white;
+  }
+
+
+
+  input[type=text], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=password], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=number], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=DATE], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=time], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 10%;
+    background-color: rgb(89, 74, 189);
+    color: white;
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: rgb(0, 0, 255);
+  }
+  
+  

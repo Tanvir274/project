@@ -2,12 +2,14 @@ import React,{useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 
+import Button from 'react-bootstrap/Button';
+
 const Profile=()=>{
     
     const[profiles,setProfile]=useState([]);
     let object=JSON.parse( localStorage.getItem('user'));
     let username = object.username;
-    //console.log(username);
+    console.log(username);
     useEffect(()=>{
         var obj ={username:{username}};
         axios.post("/AdminProfile",obj)
@@ -26,7 +28,7 @@ const Profile=()=>{
     return(
 
   <div>
-    <br/><br/><br/><h1>Your Profile</h1><br/><br/>      
+    <br/><br/><br/><h3>Your Profile</h3><br/><br/>      
     <table align='center' border= '1px solid black' border-radius= '10px'>
     <thead>    
       <tr>
@@ -37,7 +39,7 @@ const Profile=()=>{
           <td>Email</td>
           <td>Statement</td>
           <td>Address</td>
-          <td>Edit</td>
+          <td>Action</td>
       </tr>
     </thead>
     <tbody>
@@ -51,7 +53,7 @@ const Profile=()=>{
                <td>{profiles.email}</td>
                <td>{profiles.statement}</td>
                <td>{profiles.address}</td>
-               <td><Link to={`/EditAdminProfile/${profiles.username}/${profiles.name}/${profiles.password}/${profiles.phone}/${profiles.statement}/${profiles.address}`}>Edit</Link></td>    
+               <td><Link to={`/EditAdminProfile/${profiles.username}/${profiles.name}/${profiles.password}/${profiles.phone}/${profiles.statement}/${profiles.address}`}><Button variant="primary">Edit</Button></Link></td>    
          </tr>
 
           

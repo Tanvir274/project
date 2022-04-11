@@ -8,6 +8,12 @@ use App\Models\doctor;
 use App\Models\pataint;
 use App\Models\nurse;
 use App\Models\pharmacy;
+use App\Models\medicin;
+use App\Models\Medicinsell;
+
+use App\Models\Appointment;
+use App\Models\booking_cabin;
+use App\Models\booking_labtest;
 
 class AdminController extends Controller
 {
@@ -53,6 +59,23 @@ class AdminController extends Controller
 
         return $doctor;
 
+    }
+    public function DoctorAppointmentRequester(Request $request)
+    {
+        $list= Appointment::where('doctor_username',$request->username)->where('app_date',$request->date)->get();
+        
+
+        return $list;
+    }
+
+    public function SetAppointmentTime(Request $request)
+    {
+        $p= Appointment::where('doctor_username',$request->doctor)->where('pataint_username',$request->pataint)->where('app_date',$request->date)->first();
+        $p->app_time=$request->time;
+        $p->save();
+
+
+        return $p;
     }
 
     public function DeleteDoctor(Request $request)
@@ -135,6 +158,14 @@ class AdminController extends Controller
         
          return  $var;
     }
+    public function SetDutyNurse(Request $request)
+    {
+        $profile= nurse :: where('username',$request->username)->first();
+
+        $profile->duty=$request->duty;
+        $profile->save();
+        return "successsfull";
+    }
 
 
     //pharmacy
@@ -172,5 +203,26 @@ class AdminController extends Controller
         
          return  $var;
     }
+    public function SetDutyPharmacian(Request $request)
+    {
+        $profile= pharmacy :: where('username',$request->username)->first();
+
+        $profile->duty=$request->duty;
+        $profile->save();
+        return "successfull";
+    }
+
+    public function SellList()
+    {
+        $medicin=Medicinsell::all();
+        return $medicin;
+
+    }
+    public function MedicinList()
+    {
+        $medicin=medicin::all();
+        return $medicin;
+    }
+
 
 }

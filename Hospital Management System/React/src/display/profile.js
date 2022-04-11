@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import Header from "./header";
 
+import Button from 'react-bootstrap/Button';
+
 const Profile=()=>{
     const[profiles,setProfile]=useState([]);
     let object=JSON.parse( localStorage.getItem('user'));
@@ -27,7 +29,7 @@ const Profile=()=>{
 
   <div>
     <Header/>
-    <br/><br/><br/><h1>Your Profile</h1><br/><br/>      
+    <br/><br/><br/><h3>Your Profile</h3><br/><br/>      
     <table align='center' border= '1px solid black' border-radius= '10px'>
     <thead>    
       <tr>
@@ -39,7 +41,7 @@ const Profile=()=>{
           <td>Blood Group</td>
           <td>DOB</td>
           <td>Address</td>
-          <td>Change</td>
+          <td>Action</td>
       </tr>
     </thead>
     <tbody>
@@ -54,11 +56,9 @@ const Profile=()=>{
                <td>{profiles.group}</td>
                <td>{profiles.dob}</td>
                <td>{profiles.address}</td>
-               <td><Link to={`/editprofile/${profiles.id}/${profiles.name}/${profiles.password}/${profiles.phone}/${profiles.email}/${profiles.address}`}>Edit</Link></td>    
+               <td><Link to={`/editprofile/${profiles.id}/${profiles.name}/${profiles.password}/${profiles.phone}/${profiles.email}/${profiles.address}`}><Button variant="primary">Edit</Button></Link></td>    
          </tr>
-
-          
-      
+  
     }
     </tbody>     
     </table>
