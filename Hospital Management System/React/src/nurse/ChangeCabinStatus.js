@@ -1,25 +1,27 @@
 import React from "react";
 import axios from "axios";
-import { useHistory } from "react-router";
 import { useForm } from 'react-hook-form';
+import { useHistory } from "react-router";
+import {useParams}  from 'react-router-dom';
 
 
 
-const AddMedicine=()=>{
-    
+const CabinStatus=()=>{
     const history = useHistory();
+
+    const {cabin} = useParams();
+    
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     var onSubmit = data=> {
+        var obj ={cabin:{cabin},status:data.status};
     
-        var obj ={name:data.name,status:data.status};
-    
-                axios.post("/MedicinAdd",obj)
+                axios.post("/N_ChangeCabinStatus",obj)
                 .then(resp=>{
-                    alert("Add Medicine Succesfully");
+                    alert("Change Succesfully");
+                    history.push("/N_CabinList");
     
                     console.log(resp.data);
-                    history.push("/P_MedicinList");
     
                     
                 })
@@ -33,19 +35,15 @@ const AddMedicine=()=>{
     return(
         
      <form onSubmit={handleSubmit(onSubmit)}>
-       <br/><br/><br/> <h3>Add Medicine </h3><br/><br/>
-       
-       <span>Name</span><br/>
-       <input type="text" placeholder="Medicin Name" {...register("name", {required: true,minLength: 3, maxLength: 10})} /><br/>
-       <span></span>
-       <span>Status</span><br/>
+     
+       <br/><br/><br/> <h2>Set Cabin Availability</h2><br/><br/>
        <select {...register("status", { required: true })}>
-        <option value="Available">Available</option>
-        <option value="Not Available">Not Available</option>
+        <option value="Booked">Booked</option>   
+        <option value="Available">Available</option> 
       </select><br/><br/>
        
        <input type="submit" />
      </form>
     )
 }
-export default AddMedicine;
+export default CabinStatus;

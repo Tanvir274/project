@@ -107,6 +107,18 @@ Route::post('/AddPharmacyEmployee',[AdminController::class,'AddPharmacyEmployee'
 Route::post('/PharmacianDutySet',[AdminController::class,'SetDutyPharmacian'])->middleware('control');
 
 
+//Appointment Doctor & labtest
+Route::post('/A_DoctorAppointmentList',[AdminController::class,'AppointmentList'])->middleware('control');
+Route::post('/A_LabtestAppointmentList',[AdminController::class,'LabtestAppointment'])->middleware('control');
+
+//Labtest 
+
+Route::get('/A_LabTestList',[AdminController::class,'LabTestList'])->middleware('control');
+
+Route::post('/A_AddlabTest',[AdminController::class,'AddlabTest'])->middleware('control');
+
+
+
 
 
 //  @@@@@@@@@@@@@   Doctor Api:   @@@@@@@@@@
@@ -138,6 +150,10 @@ Route::get('/EmployeeSellList',[MedicinController::class,'SellList'])->middlewar
 Route::post('/NurseProfile',[NurseController::class,'NurseProfile'])->middleware('control');
 Route::post('/NurseProfileEdit',[NurseController::class,'NurseProfileEdit'])->middleware('control');
 Route::post('/NurseDutyArea',[NurseController::class,'NurseDutyArea'])->middleware('control');
+Route::get('/N_CabinList',[NurseController::class,'CabinList'])->middleware('control');
+Route::get('/N_BookedCabinListAll',[NurseController::class,'BookedCabinListAll'])->middleware('control');
+Route::post('/N_BookedCabinList',[NurseController::class,'BookedCabinList'])->middleware('control');
+Route::post('/N_ChangeCabinStatus',[NurseController::class,'ChangeCabinStatus'])->middleware('control');
 
 
 

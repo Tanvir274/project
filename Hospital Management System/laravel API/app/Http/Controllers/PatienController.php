@@ -125,27 +125,47 @@ class PatienController extends Controller
     
     public function RegistrationSubmit(Request $request)
     {
+        $p=pataint::where('username',$request->username)->first();
+        
+        $a=admin::where('username',$request->username)->first();
+
+        $d=doctor::where('username',$request->username)->first();
+
+        $PE=pharmacy::where('username',$request->username)->first();
+
+        $n=nurse::where('username',$request->username)->first();
+
+        if($p || $a || $d || $PE || $n )
+        {
+            $r=1;
+            return $r;
+        }
+        else
+        {
+            $var=new pataint();
+            $var->name=$request->name;
+            $var->username= $request->username;
+            $var->password= $request->password;
+            $var->phone= $request->phone;
+            $var->email= $request->email;
+            $var->group= $request->group;
+            $var->gender=$request->gender;
+            $var->dob= $request->dob;
+            $var->address= $request->address;
+            $var->type='pataint';
+            $var->save();
+            return  $var;
+
+        }
         
         
-        $var=new pataint();
-        $var->name=$request->name;
-        $var->username= $request->username;
-        $var->password= $request->password;
-        $var->phone= $request->phone;
-        $var->email= $request->email;
-        $var->group= $request->group;
-        $var->dob= $request->dob;
-        $var->address= $request->address;
-        $var->type='pataint';
-        $var->save();
-         return  $var;
 
     }
     public function HomePage()
     {
         $p=session('user');
-        $doctor = doctor::all();
-        $cabin = cabin::all();
+        $doctor = doctor::where('status','Available')->get();
+        $cabin = cabin::where('slot','Available')->get();
         $lab = labtest::all();
         $medicin=medicin::all();
         $home = array($doctor, $cabin, $lab,$medicin);
@@ -324,7 +344,7 @@ class PatienController extends Controller
         $var->save();
 
         $c->cabin_no=$c->cabin_no;
-        $c->slot="booked";
+        $c->slot="Booked";
         $c->save();
         return  $var;//redirect()->route('home');
 

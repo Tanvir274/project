@@ -10,10 +10,13 @@ use App\Models\nurse;
 use App\Models\pharmacy;
 use App\Models\medicin;
 use App\Models\Medicinsell;
-
+use App\Models\labtest;
 use App\Models\Appointment;
 use App\Models\booking_cabin;
 use App\Models\booking_labtest;
+
+
+
 
 class AdminController extends Controller
 {
@@ -64,8 +67,16 @@ class AdminController extends Controller
     {
         $list= Appointment::where('doctor_username',$request->username)->where('app_date',$request->date)->get();
         
+        if($list)
+        {
+            return $list;
 
-        return $list;
+        }
+        else
+        {
+            $r=0;
+            return $r;
+        }
     }
 
     public function SetAppointmentTime(Request $request)
@@ -88,22 +99,41 @@ class AdminController extends Controller
 
     public function AddDoctor(Request $request)
     {
+        $p=pataint::where('username',$request->username)->first();
+        
+        $a=admin::where('username',$request->username)->first();
+
+        $d=doctor::where('username',$request->username)->first();
+
+        $PE=pharmacy::where('username',$request->username)->first();
+
+        $n=nurse::where('username',$request->username)->first();
+
+        if($p || $a || $d || $PE || $n )
+        {
+            $r=1;
+            return $r;
+        }
+        else
+        {
+            $var=new doctor();
+            $var->doc_name=$request->name;
+            $var->username= $request->username;
+            $var->password= $request->password;
+            $var->phone= $request->phone;
+            $var->email= $request->email;
+            $var->group= $request->group;
+            $var->dob= $request->dob;
+            $var->address= $request->address;
+            $var->type="doctor";
+            $var->status="Available";
+            $var->save();
+        
+            return  $var;
+
+        }
         
         
-        $var=new doctor();
-        $var->doc_name=$request->name;
-        $var->username= $request->username;
-        $var->password= $request->password;
-        $var->phone= $request->phone;
-        $var->email= $request->email;
-        $var->group= $request->group;
-        $var->dob= $request->dob;
-        $var->address= $request->address;
-        $var->type="doctor";
-        $var->available="Not Available";
-        $var->save();
-        
-         return  $var;
 
     }
     // Pataint
@@ -143,20 +173,37 @@ class AdminController extends Controller
 
     public function AddNurse(Request $request)
     {
-         
-        $var=new nurse();
-        $var->name=$request->name;
-        $var->username= $request->username;
-        $var->password= $request->password;
-        $var->phone= $request->phone;
-        $var->email= $request->email;
-        $var->dob= $request->dob;
-        $var->duty=$request->duty;
-        $var->address= $request->address;
-        $var->type="nurse";
-        $var->save();
+        $p=pataint::where('username',$request->username)->first();
         
-         return  $var;
+        $a=admin::where('username',$request->username)->first();
+
+        $d=doctor::where('username',$request->username)->first();
+
+        $PE=pharmacy::where('username',$request->username)->first();
+
+        $n=nurse::where('username',$request->username)->first();
+
+        if($p || $a || $d || $PE || $n )
+        {
+            $r=1;
+            return $r;
+        }
+        else{
+         
+            $var=new nurse();
+            $var->name=$request->name;
+            $var->username= $request->username;
+            $var->password= $request->password;
+            $var->phone= $request->phone;
+            $var->email= $request->email;
+            $var->dob= $request->dob;
+            $var->duty=$request->duty;
+            $var->address= $request->address;
+            $var->type="nurse";
+            $var->save();
+        
+            return  $var;
+        }
     }
     public function SetDutyNurse(Request $request)
     {
@@ -188,20 +235,37 @@ class AdminController extends Controller
 
     public function AddPharmacyEmployee(Request $request)
     {
-         
-        $var=new pharmacy();
-        $var->name=$request->name;
-        $var->username= $request->username;
-        $var->password= $request->password;
-        $var->phone= $request->phone;
-        $var->email= $request->email;
-        $var->dob= $request->dob;
-        $var->address= $request->address;
-        $var->duty=$request->duty;
-        $var->type="pharmacy";
-        $var->save();
+        $p=pataint::where('username',$request->username)->first();
         
-         return  $var;
+        $a=admin::where('username',$request->username)->first();
+
+        $d=doctor::where('username',$request->username)->first();
+
+        $PE=pharmacy::where('username',$request->username)->first();
+
+        $n=nurse::where('username',$request->username)->first();
+
+        if($p || $a || $d || $PE || $n )
+        {
+            $r=1;
+            return $r;
+        }
+        else
+        { 
+            $var=new pharmacy();
+            $var->name=$request->name;
+            $var->username= $request->username;
+            $var->password= $request->password;
+            $var->phone= $request->phone;
+            $var->email= $request->email;
+            $var->dob= $request->dob;
+            $var->address= $request->address;
+            $var->duty=$request->duty;
+            $var->type="pharmacy";
+            $var->save();
+            
+            return  $var;
+        }
     }
     public function SetDutyPharmacian(Request $request)
     {
@@ -223,6 +287,65 @@ class AdminController extends Controller
         $medicin=medicin::all();
         return $medicin;
     }
+
+    //Appointment list
+    public function AppointmentList(Request $request)
+    {
+        $list= Appointment::where('app_date',$request->date)->get();
+        
+        if($list)
+        {
+            return $list;
+
+        }
+        else
+        {
+            $r=0;
+            return $r;
+        }
+    }
+
+    public function LabtestAppointment(Request $request)
+    {
+        $list= booking_labtest::where('date',$request->date)->get();
+        
+        if($list)
+        {
+            return $list;
+
+        }
+        else
+        {
+            $r=0;
+            return $r;
+        }
+    }
+
+
+
+    public function LabTestList()
+    {
+        $lab= labtest::all();
+
+        return $lab;
+
+    }
+    public function AddlabTest(Request $request)
+    {
+        $var=new labtest();
+        $var->type=$request->name;
+        $var->available="09:00 AM - 12:30 PM , 2:00 PM- 8:00 PM";
+        $var->save();
+
+        return $var;
+
+    }
+
+    
+
+
+
+    
 
 
 }

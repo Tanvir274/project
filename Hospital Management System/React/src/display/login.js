@@ -1,6 +1,7 @@
-import React,{useEffect,useState} from "react";
+import React from "react";
 import {Link} from 'react-router-dom';
 import { useHistory } from "react-router";
+import { useForm } from 'react-hook-form';
 import axios from "axios";
 
 
@@ -9,15 +10,14 @@ import Button from 'react-bootstrap/Button';
 
 const Login=()=>{
     const history = useHistory();
-    let [token,setToken]=useState();
-    let [username,setUser]=useState();
-    let [password,setPass]=useState();
+    
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const loginSubmit=()=>{
-        //alert(username+" "+password);
-        //var obj ={username:"Tanvir01",password:"1234"};
+    var onSubmit = data=> {
+        
+        
 
-        var obj ={username:username,password:password};
+        var obj ={username:data.username,password:data.password};
             axios.post("/check",obj)
             .then(resp=>{
 
@@ -29,7 +29,7 @@ const Login=()=>{
                 localStorage.setItem('user',JSON.stringify(user));
 
                 console.log(localStorage.getItem('user'));
-                //alert("login Sucessfull");
+                
                 if (token.token != null && token.type =="pataint") 
                 {
                   alert("login Sucessfull");
@@ -72,19 +72,21 @@ const Login=()=>{
     
         
     }
-    var req = true;
+    
 
     return(
         <div>
             
             <br/><br/><br/><h2>Welcome : ABC Hospital</h2><br/><br/><br/><br/><h3><b>Log In</b></h3>
-            <form>
-                <span>Username </span>
-                <input type= "text"  value={username}   onChange={(e)=>setUser(e.target.value)} /><br/>
-                <span>Password </span>
-                <input type= "password" value={password}  onChange={(e)=>setPass(e.target.value)} />
-            </form>
-            <button onClick={loginSubmit}>Login</button><br/><br/><br/>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <span>Username: </span>
+                <input type="text" placeholder="Username" {...register("username", {required: true,minLength: 3})} /><br/>
+                
+                <span>Password: </span>
+                <input type="password" placeholder="Password" {...register("password", {required: true,minLength: 3})} /><br/>
+                <input type="submit" />
+            </form><br/><br/><br/>
+             
             
             
                      

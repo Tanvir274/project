@@ -38,8 +38,8 @@ const Appointment=()=>{
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>Name</td>
-                      <td>Checkup Time</td>
+                      <td>Pataint Name</td>
+
                       <td>Checkup Date</td>
                   </tr>
 
@@ -50,7 +50,7 @@ const Appointment=()=>{
                     <tr key={post.id}>
  
                             <td>{post.pataint_name}</td>
-                            <td>{post.app_time}</td>
+                            
                             <td>{post.app_date}</td>
  
                     </tr>

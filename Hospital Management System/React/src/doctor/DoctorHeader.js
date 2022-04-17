@@ -6,7 +6,7 @@ function header()
 {
     return(
     
-        <Navbar bg="btn btn-danger" variant="dark">
+        <Navbar bg="secondary" variant="dark">
         
             <Container>
         

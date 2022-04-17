@@ -33,9 +33,9 @@ const ChangeStatus=()=>{
     return(
         
      <form onSubmit={handleSubmit(onSubmit)}>
-       <br/><br/><br/> <h3>Medicin Status Change Page <br/> Medicin Group Name : <h2>{group_name}</h2></h3><br/><br/>
-       <span>Present Status {status}</span><br/>
-       <span>Change Status</span><br/>
+       <br/><br/><br/> <h2> Medicin Group Name : {group_name}</h2><br/><br/>
+       <span><h3>Present Status :{status}</h3></span><br/>
+       <span>Change Status: </span>
        <select {...register("status", { required: true })}>
         <option value="Available">Available</option>
         <option value="Not Available">Not Available</option>

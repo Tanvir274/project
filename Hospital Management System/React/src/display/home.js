@@ -55,9 +55,8 @@ const Home=()=>{
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>ID</td>
                       <td>Name</td>
-                      <td>Checkup Time</td>
+                      <td>Status</td>
                       <td>Action(Appointment set)</td>
                       <td>Action(Comment And Rating)</td>
                   </tr>
@@ -67,9 +66,8 @@ const Home=()=>{
               {
                 doctors.map(post => (
                     <tr key={post.id}>
-                        <td>{post.id}</td>
                         <td>{post.doc_name}</td>
-                        <td>{post.available}</td>
+                        <td>{post.status}</td>
                         <td><Link to={`/doctor_appointment/${post.id}/${post.doc_name}`}><Button variant="primary">Set Appointment </Button></Link></td>
                         <td><Link to={`/doctor_review/${post.id}/${post.doc_name}`}><Button variant="info">Enter</Button></Link></td>
                     </tr>
@@ -81,7 +79,6 @@ const Home=()=>{
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>ID</td>
                       <td>Type</td>
                       <td>Available Test Time</td>
                       <td>Action(Lab Test Appointment)</td>
@@ -94,7 +91,6 @@ const Home=()=>{
               {
                 lab.map(post => (
                     <tr key={post.id}>
-                        <td>{post.id}</td>
                         <td>{post.type}</td>
                         <td>{post.available}</td>
                         <td><Link to={`/lab_appointment/${post.id}/${post.type}`}><Button variant="primary">Set Lab Test</Button></Link></td>
@@ -109,7 +105,6 @@ const Home=()=>{
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>ID</td>
                       <td>Cabin No</td>
                       <td>Status</td>
                       <td>Action(Booking Cabin)</td>
@@ -121,7 +116,6 @@ const Home=()=>{
               {
                 cabin.map(post => (
                     <tr key={post.id}>
-                        <td>{post.id}</td>
                         <td>{post.cabin_no}</td>
                         <td>{post.slot}</td>
                         <td><Link to={`/cabin_appointment/${post.id}/${post.cabin_no}`}><Button variant="primary">Booking Cabin</Button></Link></td>
@@ -135,7 +129,6 @@ const Home=()=>{
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
-                      <td>ID</td>
                       <td>Medicin Group Name</td>
                       <td>Status</td>
                   </tr>
@@ -145,7 +138,6 @@ const Home=()=>{
               {
                 Medicin.map(post => (
                     <tr key={post.id}>
-                        <td>{post.id}</td>
                         <td>{post.group_name}</td>
                         <td>{post.status}</td>
                     </tr>

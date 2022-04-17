@@ -42,7 +42,7 @@ const Pataint=()=>{
                       <td>Email</td>
                       <td>Blood Group</td>
                       <td>Address</td>
-                      <td>Remove</td>
+                      <td>Action(Delete Pataint)</td>
                   </tr>
 
               </thead>

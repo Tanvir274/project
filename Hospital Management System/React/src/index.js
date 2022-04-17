@@ -50,6 +50,10 @@ import A_MedicinList from './admin/Admin_MedicinList';
 import A_SellerList from './admin/Admin_SellerList';
 import AppointmentRequestListAdmin from './admin/SelectAppointmentDate';
 import AdminSetAppointmentTime from './admin/PataintAppointmentTimeSet';
+import A_DoctorAppointmentList from './admin/DoctorAppointmentList';
+import A_LabtestAppointmentList from './admin/LabtestAppointmentList';
+import A_LabtestList from './admin/LabTestList';
+import A_AddLabtest from './admin/AddLabtest';
 
 
 
@@ -83,6 +87,10 @@ import NurseHeader from './nurse/NurseHeader';
 import NurseHome from './nurse/NurseDashboard';
 import NurseProfile from './nurse/NursePrifile';
 import Nurse_EditProfile from './nurse/NurseEditProfile';
+import N_BookedCabin from './nurse/BookedCabinList';
+import N_ChangeCabinStatus from './nurse/ChangeCabinStatus';
+import N_CabinList from './nurse/CabinList';
+import N_BookedCabinAll from './nurse/BookedCabinAll';
 
 
 
@@ -316,6 +324,26 @@ ReactDOM.render(
           <A_SellerList/>
 
         </Route>
+        <Route exact path='/A_DoctorAppointmentList'>
+          <AdminHeader/>
+          <A_DoctorAppointmentList/>
+
+        </Route>
+        <Route exact path='/A_LabtestAppointmentList'>
+          <AdminHeader/>
+          <A_LabtestAppointmentList/>
+
+        </Route>
+        <Route exact path='/A_LabtestList'>
+          <AdminHeader/>
+          <A_LabtestList/>
+
+        </Route>
+        <Route exact path='/A_AddLabtest'>
+          <AdminHeader/>
+          <A_AddLabtest/>
+
+        </Route>
 
 
 
@@ -431,6 +459,31 @@ ReactDOM.render(
           <NurseHeader/>
 
           <Nurse_EditProfile/>
+
+        </Route>
+        <Route exact path='/N_CabinList'>
+          <NurseHeader/>
+
+          <N_CabinList/>
+
+        </Route>
+        <Route exact path='/N_BookedCabinAll'>
+          <NurseHeader/>
+
+          <N_BookedCabinAll/>
+
+        </Route>
+
+        <Route exact path='/N_BookedCabin'>
+          <NurseHeader/>
+
+          <N_BookedCabin/>
+
+        </Route>
+        <Route exact path='/N_ChangeCabinStatus/:cabin'>
+          <NurseHeader/>
+
+          <N_ChangeCabinStatus/>
 
         </Route>
 

@@ -31,12 +31,10 @@ const Appointment=()=>{
         
      <form onSubmit={handleSubmit(onSubmit)}>
      
-       <br/><br/><br/> <h2>Set Your Checkup Time</h2><br/><br/>
+       <br/><br/><br/> <h2>Set Your Availability</h2><br/><br/>
        <select {...register("time", { required: true })}>
+        <option value="Available">Available</option>
         <option value="Not Available">Not Available</option>
-        <option value="9:00 AM-12:30 PM And 2:00 PM - 8:00 PM">9:00 AM-12:30 PM And 2:00 PM - 8:00 PM  </option>
-        <option value="9:00 AM-12:30 PM+">9:00 AM-12:30 PM</option>
-        <option value="2:00 PM - 8:00 PM">2:00 PM - 8:00 PM</option>
       </select><br/><br/>
        
        <input type="submit" />

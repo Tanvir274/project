@@ -15,7 +15,7 @@ function header()
             
                 <Nav className="me-auto">
             
-                <Nav.Link href="/P_AddMedicin">Add Medicin</Nav.Link>
+                <Nav.Link href="/P_AddMedicin">Add Medicine</Nav.Link>
             
                 <Nav.Link href="/P_MedicinSell">Update Sell</Nav.Link>
             

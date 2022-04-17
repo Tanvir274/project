@@ -1,20 +1,21 @@
 import React,{useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import {useParams}  from 'react-router-dom';
 
-import Button from 'react-bootstrap/Button';
+
+
 
 const Appointment=()=>{
-    const {name,username} = useParams();
+    
     const[List,setList]=useState([]);
+    const[Date,setDate]=useState([]);
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     var onSubmit = data=> {
-        var obj ={username:{username},date:data.date};
+        var obj ={date:data.date};
+        setDate(data.date)
     
-                axios.post("/AppointmentRequestList",obj)
+                axios.post("/A_DoctorAppointmentList",obj)
                 .then(resp=>{
                   
                   if(resp.data==0)
@@ -29,7 +30,7 @@ const Appointment=()=>{
 
                   }
 
-                  setList(resp.data);
+                  //setList(resp.data);
 
                     //alert("Found Appointment");
     
@@ -49,7 +50,7 @@ const Appointment=()=>{
     <>   
      <form onSubmit={handleSubmit(onSubmit)}>
         
-       <br/><br/><br/> <h3>Doctor Name <h2>{name}</h2> </h3><br/><br/>
+       <br/><br/><br/> <h2> Patient Appointment List for Doctor Checkup  </h2><br/><br/>
        <span></span>
        <span>Select Date</span><br/>
        <input type="date"  {...register("date", {required: true})} /><br/>
@@ -58,16 +59,14 @@ const Appointment=()=>{
        <input type="submit" />
      </form><br/><br/><br/>
 
-     <h3>Appointment Request List</h3>
+     <h3>Select Date: {Date}</h3>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>
                       <td>Doctor Name</td>
                       <td>Pataint Name</td>
-                      
                       <td>Checkup Date</td>
                       <td>Checkup Time</td>
-                      <td>Action(Set Checkup Time)</td>
                   </tr>
 
               </thead>
@@ -79,7 +78,6 @@ const Appointment=()=>{
                             <td>{post.pataint_name}</td>
                             <td>{post.app_date}</td>
                             <td>{post.app_time}</td>
-                            <td><Link to={`/AdminSetAppointmentTime/${post.doctor_username}/${post.pataint_username}/${post.app_date}`}><Button variant="primary">Change</Button></Link></td>
  
                     </tr>
                 ))

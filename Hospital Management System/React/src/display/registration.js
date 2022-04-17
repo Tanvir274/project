@@ -10,13 +10,25 @@ export default function App() {
 
   var onSubmit = data=> {
     var obj ={name:data.name,username:data.username,password:data.password,phone:data.digit,
-        email:data.email,group:data.blood,dob:data.dob,address:data.address};
+        email:data.email,group:data.blood,gender:data.gender,dob:data.dob,address:data.address};
 
             axios.post("/registration/submit",obj)
             .then(resp=>{
-                alert("registration Succesfull");
 
-                console.log(resp.data);
+              if(resp.data==1)
+              {
+                alert("Your enter username already used"+"\n"+ "Change Username");
+
+              }
+              else
+              {
+                alert("Registration Succesfull");
+                history.push("/");
+
+              }
+                
+
+                //console.log(resp.data);
 
                 
             })
@@ -40,14 +52,14 @@ export default function App() {
       <input type="text" placeholder="Name" {...register("name", {required: true,minLength: 3, maxLength: 30})} /><br/>
       <span></span>
       <h4>User Name</h4>
-      <input type="text" placeholder="username" {...register("username", {required: true,minLength: 3, maxLength: 10})} /><br/>
+      <input type="text" placeholder="username" {...register("username", {required: true,minLength: 3, maxLength: 15})} /><br/>
       <span></span>
       <h4>Password</h4>
-      <input type="text" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 10})} /><br/>
+      <input type="password" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 15})} /><br/>
       <h4>Email</h4>
       <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} /><br/>
       <h4>Phone Number</h4>
-      <input type="number" placeholder="Mobile number" {...register("digit", {required: true,pattern:/^\d{10}$/, minLength: 8, maxLength: 15})} /><br/>
+      <input type="text" placeholder="Mobile number" {...register("digit", {required: true,pattern:[0-9], minLength: 8, maxLength: 15})} /><br/>
       <h4>Blood Group</h4>
       <select {...register("blood", { required: true })}>
         <option value="A+">A+</option>
@@ -59,10 +71,16 @@ export default function App() {
         <option value="B-">B-</option>
         <option value="AB-">AB-</option>
       </select><br/><br/>
+      <h4>Gender</h4>
+      <select {...register("gender", { required: true })}>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select><br/><br/>
       <h4>Date Of Birth</h4>
       <input type="DATE" placeholder="Date of birth" {...register("dob", {required: true})} /><br/>
       <h4>Address</h4>
-      <input type="text" placeholder="Address" {...register("address", {required: true,minLength: 4, maxLength: 30})} /><br/>
+      <input type="text" placeholder="Address" {...register("address", {required: true,minLength: 4, maxLength: 50})} /><br/>
 
       <input type="submit" /><br/><br/><br/>
       <button onClick={back}>Back</button>

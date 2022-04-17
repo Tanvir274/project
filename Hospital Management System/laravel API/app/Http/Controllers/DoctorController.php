@@ -36,7 +36,7 @@ class DoctorController extends Controller
     public function SetCheckupTime(Request $request)
     {
         $profile= doctor :: where('username',$request->username)->first();
-        $profile->available=$request->time;
+        $profile->status=$request->time;
         $profile->save();
 
     }

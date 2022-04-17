@@ -51,11 +51,12 @@ const MedicinList=()=>{
 
     return(
         <div>
+            <br/><br/>
 
-            <h2>Welcome : {Name.name}</h2><br/><br/>
+            <h2>Welcome : {Name.name}</h2>
 
             <br/><br/><br/>
-            <h1>Medicine List </h1>
+            <h3>Medicine List </h3><br/>
             <table align='center' border= '1px solid black' border-radius= '10px'>
               <thead>
                   <tr>

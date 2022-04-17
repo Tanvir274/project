@@ -14,10 +14,18 @@ export default function App() {
 
             axios.post("/AddNurse",obj)
             .then(resp=>{
+              if(resp.data==1)
+              {
+                alert("Your enter username already used"+"\n"+ "Change Username");
+
+              }
+              else
+              {
                 alert("Registration Succesfull");
 
-                console.log(resp.data);
+                //console.log(resp.data);
                 history.push("/NurseList");
+              }
 
                 
             })
@@ -38,24 +46,24 @@ export default function App() {
       
        <br/><br/><br/> <h3>Registration Nurse</h3><br/><br/>
       <span>Name</span><br/>
-      <input type="text" placeholder="Name" {...register("name", {required: true,minLength: 3, maxLength: 20})} /><br/>
+      <input type="text" placeholder="Name" {...register("name", {required: true,minLength: 3, maxLength: 30})} /><br/>
       <span></span>
       <span>User Name</span><br/>
-      <input type="text" placeholder="username" {...register("username", {required: true,minLength: 3, maxLength: 20})} /><br/>
+      <input type="text" placeholder="username" {...register("username", {required: true,minLength: 3, maxLength: 15})} /><br/>
       <span></span>
       <span>Password</span><br/>
-      <input type="text" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 10})} /><br/>
+      <input type="text" placeholder="Password" {...register("password", {required: true,minLength: 4, maxLength: 15})} /><br/>
       <span>Email</span><br/>
       <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} /><br/>
       <span>phone Number</span><br/>
-      <input type="number" placeholder="Phone number" {...register("digit", {required: true, minLength: 6, maxLength: 12})} /><br/>
+      <input type="text" placeholder="Phone number" {...register("digit", {required: true,pattern:[0-9], minLength: 8, maxLength: 15})} /><br/>
       <span>Set Duty Area</span><br/>
       <input type="text" placeholder="Duty Area" {...register("duty", {required: true,minLength: 4, maxLength: 30})} /><br/>
       
-      <span>Date Of Birth,, </span><br/>
+      <span>Date Of Birth </span><br/>
       <input type="DATE" placeholder="Date of birth" {...register("dob", {required: true})} /><br/>
       <span>Address</span><br/>
-      <input type="text" placeholder="Address" {...register("address", {required: true,minLength: 4, maxLength: 30})} /><br/>
+      <input type="text" placeholder="Address" {...register("address", {required: true,minLength: 4, maxLength: 50})} /><br/>
 
       <input type="submit" /><br/><br/><br/>
       

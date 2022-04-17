@@ -40,7 +40,7 @@ const Doctor=()=>{
                       <td>Phone</td>
                       <td>Email</td>
                       <td>Address</td>
-                      <td>Checkup Time</td>
+                      <td>Checkup Status</td>
                       <td>Action(Appointment Request)</td>
                       <td>Action(Delete)</td>
                   </tr>
@@ -55,7 +55,7 @@ const Doctor=()=>{
                         <td>{post.phone}</td>
                         <td>{post.email}</td>
                         <td>{post.address}</td>
-                        <td>{post.available}</td>
+                        <td>{post.status}</td>
                         <td><Link to={`/AppointmentRequestList/${post.doc_name}/${post.username}`}><Button variant="success">List</Button></Link></td>
 
                         <td><Link to={`/DeleteDoctor/${post.doc_name}/${post.username}/${post.phone}/${post.email}/${post.address}`}><Button variant="danger">Delete</Button></Link></td>
